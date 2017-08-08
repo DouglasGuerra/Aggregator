@@ -1,0 +1,2 @@
+filtering
+-DCATKIN_DEVEL_PREFIX=/home/dguerra/Aggregator/lidar/lidar_code/devel -DCMAKE_INSTALL_PREFIX=/home/dguerra/Aggregator/lidar/lidar_code/install -G Unix Makefiles

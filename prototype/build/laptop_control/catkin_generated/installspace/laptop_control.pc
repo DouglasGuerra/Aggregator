@@ -1,0 +1,8 @@
+prefix=/home/dguerra/Aggregator/prototype/install
+
+Name: laptop_control
+Description: Description of laptop_control
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/dguerra/Aggregator/prototype/install/lib -llaptop_control
+Requires: genmsg message_generation message_runtime roscpp rospy std_msgs shared_files

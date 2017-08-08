@@ -1,2 +1,9 @@
-This is just a test.
-This folder will contain code for Aggregator.
+
+1. laptop_Prototype
+
+	This workspace contains the code for the prototype including motor control, xbox controller input and keyboard input.
+	
+	
+2. random.cpp
+	
+	This file is just a random c++ file that was used to test if Git Hub was up and running. 
