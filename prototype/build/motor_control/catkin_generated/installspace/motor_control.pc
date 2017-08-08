@@ -1,8 +1,0 @@
-prefix=/home/dguerra/Aggregator/prototype/install
-
-Name: motor_control
-Description: Description of motor_control
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/dguerra/Aggregator/prototype/install/lib 
-Requires: 

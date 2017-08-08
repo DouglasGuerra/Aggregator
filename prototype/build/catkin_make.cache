@@ -1,2 +1,0 @@
-laptop_control:motor_control:shared_files
--DCATKIN_DEVEL_PREFIX=/home/dguerra/Aggregator/prototype/devel -DCMAKE_INSTALL_PREFIX=/home/dguerra/Aggregator/prototype/install -G Unix Makefiles
