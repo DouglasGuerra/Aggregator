@@ -1,9 +1,3 @@
-
-1. laptop_Prototype
-
-	This workspace contains the code for the prototype including motor control, xbox controller input and keyboard input.
-	
-	
-2. random.cpp
-	
-	This file is just a random c++ file that was used to test if Git Hub was up and running. 
+This folder contains the code for the lidar. This code takes in the scan from the hokuyo lidar
+and then converts into a ROS pointcloud data type and publishes it as a ROS message. Then we 
+run a PassThrough and StatisticalOutlierRemoval filter in order to reduce our data set. 
