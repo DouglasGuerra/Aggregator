@@ -3,7 +3,7 @@
 * ensure it is our desired object. Then we pass this object as a ROS msg. 
 */
 
-#include <iostream>
+#include <math.h>
 
 //ROS includes
 #include <ros/ros.h>
@@ -25,8 +25,8 @@ ros::Publisher pub_output;
 
 //defining the length of our object in meters
 float object_length = 0.4064;
-float length_min = object_length - object_length*0.15;	//setting a range of 1% error to detect
-float length_max = object_length + object_length*0.15;
+float length_min = object_length - 0.05;	//setting a range of +/- 0.05 meters
+float length_max = object_length + 0.05;
 
 /*
 * Function Name: pcl_cb
@@ -99,14 +99,10 @@ void pcl_cb(const sensor_msgs::PointCloud2ConstPtr& input){
 			dist_x = maxPoint.x - minPoint.x;
 			dist_y = maxPoint.y - minPoint.y;
 
-			//The coordinates with the largest difference represents the axis of which the object
-			//is mostly aligned to
-			if(dist_x > dist_y) dist_object = dist_x;
-			else dist_object = dist_y;
+			//Calculating the object length of extracted image, using euclidean distance
+			dist_object = pow(dist_x, 2) + pow(dist_y, 2);
+			dist_object = pow(dist_object, 0.5);
 
-			std::cout << "Dist Object: " << dist_object << " ";
-			std::cout << "length_min: " << length_min << " ";
-			std::cout << "length_max: " << length_max << "\n";
 			if(dist_object >= length_min && dist_object <= length_max){
 				//The distance of the object we found is within the desired range
 				found_object = true;
