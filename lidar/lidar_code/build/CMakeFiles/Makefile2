@@ -230,7 +230,7 @@ gtest/preinstall:
 gtest/CMakeFiles/gtest.dir/all:
 	$(MAKE) -f gtest/CMakeFiles/gtest.dir/build.make gtest/CMakeFiles/gtest.dir/depend
 	$(MAKE) -f gtest/CMakeFiles/gtest.dir/build.make gtest/CMakeFiles/gtest.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/dguerra/Aggregator/lidar/lidar_code/build/CMakeFiles  2
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/dguerra/Aggregator/lidar/lidar_code/build/CMakeFiles  3
 	@echo "Built target gtest"
 .PHONY : gtest/CMakeFiles/gtest.dir/all
 
@@ -261,7 +261,7 @@ clean: gtest/CMakeFiles/gtest.dir/clean
 gtest/CMakeFiles/gtest_main.dir/all: gtest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/depend
 	$(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/dguerra/Aggregator/lidar/lidar_code/build/CMakeFiles  3
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/dguerra/Aggregator/lidar/lidar_code/build/CMakeFiles  4
 	@echo "Built target gtest_main"
 .PHONY : gtest/CMakeFiles/gtest_main.dir/all
 
@@ -979,7 +979,7 @@ clean: filtering/CMakeFiles/nodelet_generate_messages_py.dir/clean
 filtering/CMakeFiles/passthrough_filter_node.dir/all:
 	$(MAKE) -f filtering/CMakeFiles/passthrough_filter_node.dir/build.make filtering/CMakeFiles/passthrough_filter_node.dir/depend
 	$(MAKE) -f filtering/CMakeFiles/passthrough_filter_node.dir/build.make filtering/CMakeFiles/passthrough_filter_node.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/dguerra/Aggregator/lidar/lidar_code/build/CMakeFiles  4
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/dguerra/Aggregator/lidar/lidar_code/build/CMakeFiles  5
 	@echo "Built target passthrough_filter_node"
 .PHONY : filtering/CMakeFiles/passthrough_filter_node.dir/all
 
@@ -1417,7 +1417,7 @@ clean: filtering/CMakeFiles/sensor_msgs_generate_messages_py.dir/clean
 filtering/CMakeFiles/statistical_outlier_filter_node.dir/all:
 	$(MAKE) -f filtering/CMakeFiles/statistical_outlier_filter_node.dir/build.make filtering/CMakeFiles/statistical_outlier_filter_node.dir/depend
 	$(MAKE) -f filtering/CMakeFiles/statistical_outlier_filter_node.dir/build.make filtering/CMakeFiles/statistical_outlier_filter_node.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/dguerra/Aggregator/lidar/lidar_code/build/CMakeFiles  5
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/dguerra/Aggregator/lidar/lidar_code/build/CMakeFiles  7
 	@echo "Built target statistical_outlier_filter_node"
 .PHONY : filtering/CMakeFiles/statistical_outlier_filter_node.dir/all
 
@@ -1815,6 +1815,93 @@ filtering/CMakeFiles/topic_tools_generate_messages_py.dir/clean:
 
 # clean rule for target.
 clean: filtering/CMakeFiles/topic_tools_generate_messages_py.dir/clean
+.PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory pcl_extraction
+
+# Convenience name for "all" pass in the directory.
+pcl_extraction/all: pcl_extraction/CMakeFiles/extract_indices_node.dir/all
+pcl_extraction/all: pcl_extraction/CMakeFiles/ransac_node.dir/all
+.PHONY : pcl_extraction/all
+
+# Convenience name for "clean" pass in the directory.
+pcl_extraction/clean: pcl_extraction/CMakeFiles/extract_indices_node.dir/clean
+pcl_extraction/clean: pcl_extraction/CMakeFiles/ransac_node.dir/clean
+.PHONY : pcl_extraction/clean
+
+# Convenience name for "preinstall" pass in the directory.
+pcl_extraction/preinstall:
+.PHONY : pcl_extraction/preinstall
+
+#=============================================================================
+# Target rules for target pcl_extraction/CMakeFiles/extract_indices_node.dir
+
+# All Build rule for target.
+pcl_extraction/CMakeFiles/extract_indices_node.dir/all:
+	$(MAKE) -f pcl_extraction/CMakeFiles/extract_indices_node.dir/build.make pcl_extraction/CMakeFiles/extract_indices_node.dir/depend
+	$(MAKE) -f pcl_extraction/CMakeFiles/extract_indices_node.dir/build.make pcl_extraction/CMakeFiles/extract_indices_node.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/dguerra/Aggregator/lidar/lidar_code/build/CMakeFiles  2
+	@echo "Built target extract_indices_node"
+.PHONY : pcl_extraction/CMakeFiles/extract_indices_node.dir/all
+
+# Include target in all.
+all: pcl_extraction/CMakeFiles/extract_indices_node.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+pcl_extraction/CMakeFiles/extract_indices_node.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dguerra/Aggregator/lidar/lidar_code/build/CMakeFiles 1
+	$(MAKE) -f CMakeFiles/Makefile2 pcl_extraction/CMakeFiles/extract_indices_node.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dguerra/Aggregator/lidar/lidar_code/build/CMakeFiles 0
+.PHONY : pcl_extraction/CMakeFiles/extract_indices_node.dir/rule
+
+# Convenience name for target.
+extract_indices_node: pcl_extraction/CMakeFiles/extract_indices_node.dir/rule
+.PHONY : extract_indices_node
+
+# clean rule for target.
+pcl_extraction/CMakeFiles/extract_indices_node.dir/clean:
+	$(MAKE) -f pcl_extraction/CMakeFiles/extract_indices_node.dir/build.make pcl_extraction/CMakeFiles/extract_indices_node.dir/clean
+.PHONY : pcl_extraction/CMakeFiles/extract_indices_node.dir/clean
+
+# clean rule for target.
+clean: pcl_extraction/CMakeFiles/extract_indices_node.dir/clean
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target pcl_extraction/CMakeFiles/ransac_node.dir
+
+# All Build rule for target.
+pcl_extraction/CMakeFiles/ransac_node.dir/all:
+	$(MAKE) -f pcl_extraction/CMakeFiles/ransac_node.dir/build.make pcl_extraction/CMakeFiles/ransac_node.dir/depend
+	$(MAKE) -f pcl_extraction/CMakeFiles/ransac_node.dir/build.make pcl_extraction/CMakeFiles/ransac_node.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/dguerra/Aggregator/lidar/lidar_code/build/CMakeFiles  6
+	@echo "Built target ransac_node"
+.PHONY : pcl_extraction/CMakeFiles/ransac_node.dir/all
+
+# Include target in all.
+all: pcl_extraction/CMakeFiles/ransac_node.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+pcl_extraction/CMakeFiles/ransac_node.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dguerra/Aggregator/lidar/lidar_code/build/CMakeFiles 1
+	$(MAKE) -f CMakeFiles/Makefile2 pcl_extraction/CMakeFiles/ransac_node.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dguerra/Aggregator/lidar/lidar_code/build/CMakeFiles 0
+.PHONY : pcl_extraction/CMakeFiles/ransac_node.dir/rule
+
+# Convenience name for target.
+ransac_node: pcl_extraction/CMakeFiles/ransac_node.dir/rule
+.PHONY : ransac_node
+
+# clean rule for target.
+pcl_extraction/CMakeFiles/ransac_node.dir/clean:
+	$(MAKE) -f pcl_extraction/CMakeFiles/ransac_node.dir/build.make pcl_extraction/CMakeFiles/ransac_node.dir/clean
+.PHONY : pcl_extraction/CMakeFiles/ransac_node.dir/clean
+
+# clean rule for target.
+clean: pcl_extraction/CMakeFiles/ransac_node.dir/clean
 .PHONY : clean
 
 #=============================================================================

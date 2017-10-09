@@ -1,5 +1,5 @@
 /*
-* This code filters out values in the x direction, that are farther than the starting area where 
+* This code filters out values in the y direction, that are farther than the starting area where 
 * the robot could be placed. This is done through a PassThrough filter. The right side of the lidar
 * is where the mini-usb port is connected. The notch, indicates the back of the lidar where no 
 * data points are acquired
@@ -31,7 +31,7 @@ void pcl_cb(const sensor_msgs::PointCloud2ConstPtr& input_cloud){
 	//creating an output cloud to hold the filtered data
 	pcl::PCLPointCloud2 filtered_cloud;
 
-	//filtering out in the x direction
+	//filtering out in the y direction
 	pcl::PassThrough<pcl::PCLPointCloud2> filter;
 	filter.setInputCloud(cloud_ptr);
 	filter.setFilterFieldName("y");

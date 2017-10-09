@@ -851,6 +851,32 @@ topic_tools_generate_messages_py/fast:
 	$(MAKE) -f filtering/CMakeFiles/topic_tools_generate_messages_py.dir/build.make filtering/CMakeFiles/topic_tools_generate_messages_py.dir/build
 .PHONY : topic_tools_generate_messages_py/fast
 
+#=============================================================================
+# Target rules for targets named extract_indices_node
+
+# Build rule for target.
+extract_indices_node: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 extract_indices_node
+.PHONY : extract_indices_node
+
+# fast build rule for target.
+extract_indices_node/fast:
+	$(MAKE) -f pcl_extraction/CMakeFiles/extract_indices_node.dir/build.make pcl_extraction/CMakeFiles/extract_indices_node.dir/build
+.PHONY : extract_indices_node/fast
+
+#=============================================================================
+# Target rules for targets named ransac_node
+
+# Build rule for target.
+ransac_node: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 ransac_node
+.PHONY : ransac_node
+
+# fast build rule for target.
+ransac_node/fast:
+	$(MAKE) -f pcl_extraction/CMakeFiles/ransac_node.dir/build.make pcl_extraction/CMakeFiles/ransac_node.dir/build
+.PHONY : ransac_node/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -918,6 +944,8 @@ help:
 	@echo "... topic_tools_generate_messages_cpp"
 	@echo "... topic_tools_generate_messages_lisp"
 	@echo "... topic_tools_generate_messages_py"
+	@echo "... extract_indices_node"
+	@echo "... ransac_node"
 .PHONY : help
 
 

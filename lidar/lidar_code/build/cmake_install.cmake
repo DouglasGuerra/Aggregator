@@ -118,6 +118,7 @@ IF(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   INCLUDE("/home/dguerra/Aggregator/lidar/lidar_code/build/gtest/cmake_install.cmake")
   INCLUDE("/home/dguerra/Aggregator/lidar/lidar_code/build/filtering/cmake_install.cmake")
+  INCLUDE("/home/dguerra/Aggregator/lidar/lidar_code/build/pcl_extraction/cmake_install.cmake")
 
 ENDIF(NOT CMAKE_INSTALL_LOCAL_ONLY)
 

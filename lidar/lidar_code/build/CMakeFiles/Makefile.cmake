@@ -15,9 +15,13 @@ SET(CMAKE_MAKEFILE_DEPENDS
   "catkin_generated/order_packages.cmake"
   "filtering/catkin_generated/ordered_paths.cmake"
   "filtering/catkin_generated/package.cmake"
+  "pcl_extraction/catkin_generated/ordered_paths.cmake"
+  "pcl_extraction/catkin_generated/package.cmake"
   "/home/dguerra/Aggregator/lidar/lidar_code/src/CMakeLists.txt"
   "/home/dguerra/Aggregator/lidar/lidar_code/src/filtering/CMakeLists.txt"
   "/home/dguerra/Aggregator/lidar/lidar_code/src/filtering/package.xml"
+  "/home/dguerra/Aggregator/lidar/lidar_code/src/pcl_extraction/CMakeLists.txt"
+  "/home/dguerra/Aggregator/lidar/lidar_code/src/pcl_extraction/package.xml"
   "/opt/ros/indigo/share/actionlib/cmake/actionlib-msg-extras.cmake"
   "/opt/ros/indigo/share/actionlib/cmake/actionlibConfig-version.cmake"
   "/opt/ros/indigo/share/actionlib/cmake/actionlibConfig.cmake"
@@ -233,6 +237,7 @@ SET(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   "gtest/CMakeFiles/CMakeDirectoryInformation.cmake"
   "filtering/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "pcl_extraction/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
@@ -291,4 +296,6 @@ SET(CMAKE_DEPEND_INFO_FILES
   "filtering/CMakeFiles/topic_tools_generate_messages_cpp.dir/DependInfo.cmake"
   "filtering/CMakeFiles/topic_tools_generate_messages_lisp.dir/DependInfo.cmake"
   "filtering/CMakeFiles/topic_tools_generate_messages_py.dir/DependInfo.cmake"
+  "pcl_extraction/CMakeFiles/extract_indices_node.dir/DependInfo.cmake"
+  "pcl_extraction/CMakeFiles/ransac_node.dir/DependInfo.cmake"
   )

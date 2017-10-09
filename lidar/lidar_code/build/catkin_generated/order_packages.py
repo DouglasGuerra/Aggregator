@@ -2,4 +2,4 @@
 source_root_dir = "/home/dguerra/Aggregator/lidar/lidar_code/src"
 whitelisted_packages = "".split(';') if "" != "" else []
 blacklisted_packages = "".split(';') if "" != "" else []
-underlay_workspaces = "/opt/ros/indigo".split(';') if "/opt/ros/indigo" != "" else []
+underlay_workspaces = "/home/dguerra/Aggregator/lidar/lidar_code/devel;/opt/ros/indigo".split(';') if "/home/dguerra/Aggregator/lidar/lidar_code/devel;/opt/ros/indigo" != "" else []

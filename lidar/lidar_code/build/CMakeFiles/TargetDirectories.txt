@@ -15,6 +15,7 @@
 /home/dguerra/Aggregator/lidar/lidar_code/build/filtering/CMakeFiles/dynamic_reconfigure_generate_messages_cpp.dir
 /home/dguerra/Aggregator/lidar/lidar_code/build/filtering/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir
 /home/dguerra/Aggregator/lidar/lidar_code/build/filtering/CMakeFiles/dynamic_reconfigure_generate_messages_py.dir
+/home/dguerra/Aggregator/lidar/lidar_code/build/pcl_extraction/CMakeFiles/extract_indices_node.dir
 /home/dguerra/Aggregator/lidar/lidar_code/build/filtering/CMakeFiles/geometry_msgs_generate_messages_cpp.dir
 /home/dguerra/Aggregator/lidar/lidar_code/build/filtering/CMakeFiles/geometry_msgs_generate_messages_lisp.dir
 /home/dguerra/Aggregator/lidar/lidar_code/build/filtering/CMakeFiles/geometry_msgs_generate_messages_py.dir
@@ -28,6 +29,7 @@
 /home/dguerra/Aggregator/lidar/lidar_code/build/filtering/CMakeFiles/pcl_msgs_generate_messages_lisp.dir
 /home/dguerra/Aggregator/lidar/lidar_code/build/filtering/CMakeFiles/pcl_msgs_generate_messages_py.dir
 /home/dguerra/Aggregator/lidar/lidar_code/build/filtering/CMakeFiles/pcl_ros_gencfg.dir
+/home/dguerra/Aggregator/lidar/lidar_code/build/pcl_extraction/CMakeFiles/ransac_node.dir
 /home/dguerra/Aggregator/lidar/lidar_code/build/filtering/CMakeFiles/roscpp_generate_messages_cpp.dir
 /home/dguerra/Aggregator/lidar/lidar_code/build/filtering/CMakeFiles/roscpp_generate_messages_lisp.dir
 /home/dguerra/Aggregator/lidar/lidar_code/build/filtering/CMakeFiles/roscpp_generate_messages_py.dir
