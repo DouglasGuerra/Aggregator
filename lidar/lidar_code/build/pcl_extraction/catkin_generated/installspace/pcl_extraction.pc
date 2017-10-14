@@ -1,0 +1,8 @@
+prefix=/home/dguerra/aggregator/lidar/lidar_code/install
+
+Name: pcl_extraction
+Description: Description of pcl_extraction
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/dguerra/aggregator/lidar/lidar_code/install/lib -lpcl_extraction
+Requires: laser_geometry pcl_conversions pcl_ros roscpp rospy sensor_msgs

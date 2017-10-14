@@ -1,0 +1,8 @@
+prefix=/home/dguerra/aggregator/lidar/lidar_code/install
+
+Name: filtering
+Description: Description of filtering
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/dguerra/aggregator/lidar/lidar_code/install/lib -lfiltering
+Requires: laser_geometry pcl_conversions pcl_ros roscpp sensor_msgs
