@@ -24,7 +24,7 @@ ros::Subscriber sub_input;
 ros::Publisher pub_output;
 
 //defining the length of our object in meters
-float object_length = 0.4064;
+float object_length = 0.5334;
 float length_min = object_length - 0.05;	//setting a range of +/- 0.05 meters
 float length_max = object_length + 0.05;
 
@@ -79,7 +79,7 @@ void pcl_cb(const sensor_msgs::PointCloud2ConstPtr& input){
 
 		//No objects were find that fulfill our parameters so we break out of the loop
 		if(inliers->indices.size() == 0){
-			std::cout << "No inliers" << std::endl;
+			//std::cout << "No inliers" << std::endl;
 			gotInliers = false;
 			break;
 		}
@@ -107,7 +107,7 @@ void pcl_cb(const sensor_msgs::PointCloud2ConstPtr& input){
 				//The distance of the object we found is within the desired range
 				found_object = true;
 				output_cloud = cloud_inliers;
-				ROS_INFO("FOUND IT!!!!!!!!!!!!!!!!!!!!!\n");
+				//ROS_INFO("FOUND IT!!!!!!!!!!!!!!!!!!!!!\n");
 			}
 
 			if(!found_object) {
@@ -120,13 +120,17 @@ void pcl_cb(const sensor_msgs::PointCloud2ConstPtr& input){
 		}
 	}
 
-	ROS_INFO("We are out of the while loop");
-	//Creating a ROS msg
-	sensor_msgs::PointCloud2 output;
-	pcl::toROSMsg(*output_cloud, output);
+	//ROS_INFO("We are out of the while loop");
 
-	//Publishing a ROS msg
-	pub_output.publish(output);
+	//publishing only if we have found our object
+	if(found_object){
+		//Creating a ROS msg
+		sensor_msgs::PointCloud2 output;
+		pcl::toROSMsg(*output_cloud, output);
+
+		//Publishing a ROS msg
+		pub_output.publish(output);
+	}
 }
 
 int main(int argc, char** argv){

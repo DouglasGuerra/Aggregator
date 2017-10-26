@@ -47,3 +47,7 @@ target_link_libraries(ransac_node ${catkin_LIBRARIES})
 #executable for the extract indices node
 add_executable(extract_indices_node src/extract_indices_node.cpp)
 target_link_libraries(extract_indices_node ${catkin_LIBRARIES})
+
+#executable for the centroid (calc_centroid_node.cpp)
+add_executable(calc_centroid_node src/calc_centroid_node.cpp)
+target_link_libraries(calc_centroid_node ${catkin_LIBRARIES})

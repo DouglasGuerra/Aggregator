@@ -852,6 +852,19 @@ topic_tools_generate_messages_py/fast:
 .PHONY : topic_tools_generate_messages_py/fast
 
 #=============================================================================
+# Target rules for targets named calc_centroid_node
+
+# Build rule for target.
+calc_centroid_node: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 calc_centroid_node
+.PHONY : calc_centroid_node
+
+# fast build rule for target.
+calc_centroid_node/fast:
+	$(MAKE) -f pcl_extraction/CMakeFiles/calc_centroid_node.dir/build.make pcl_extraction/CMakeFiles/calc_centroid_node.dir/build
+.PHONY : calc_centroid_node/fast
+
+#=============================================================================
 # Target rules for targets named extract_indices_node
 
 # Build rule for target.
@@ -944,6 +957,7 @@ help:
 	@echo "... topic_tools_generate_messages_cpp"
 	@echo "... topic_tools_generate_messages_lisp"
 	@echo "... topic_tools_generate_messages_py"
+	@echo "... calc_centroid_node"
 	@echo "... extract_indices_node"
 	@echo "... ransac_node"
 .PHONY : help
