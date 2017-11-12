@@ -164,6 +164,20 @@ calc_centroid_node/fast:
 .PHONY : calc_centroid_node/fast
 
 # Convenience name for target.
+pcl_extraction/CMakeFiles/calc_position_node.dir/rule:
+	cd /home/dguerra/aggregator/lidar/lidar_code/build && $(MAKE) -f CMakeFiles/Makefile2 pcl_extraction/CMakeFiles/calc_position_node.dir/rule
+.PHONY : pcl_extraction/CMakeFiles/calc_position_node.dir/rule
+
+# Convenience name for target.
+calc_position_node: pcl_extraction/CMakeFiles/calc_position_node.dir/rule
+.PHONY : calc_position_node
+
+# fast build rule for target.
+calc_position_node/fast:
+	cd /home/dguerra/aggregator/lidar/lidar_code/build && $(MAKE) -f pcl_extraction/CMakeFiles/calc_position_node.dir/build.make pcl_extraction/CMakeFiles/calc_position_node.dir/build
+.PHONY : calc_position_node/fast
+
+# Convenience name for target.
 pcl_extraction/CMakeFiles/extract_indices_node.dir/rule:
 	cd /home/dguerra/aggregator/lidar/lidar_code/build && $(MAKE) -f CMakeFiles/Makefile2 pcl_extraction/CMakeFiles/extract_indices_node.dir/rule
 .PHONY : pcl_extraction/CMakeFiles/extract_indices_node.dir/rule
@@ -214,6 +228,30 @@ src/calc_centroid_node.s: src/calc_centroid_node.cpp.s
 src/calc_centroid_node.cpp.s:
 	cd /home/dguerra/aggregator/lidar/lidar_code/build && $(MAKE) -f pcl_extraction/CMakeFiles/calc_centroid_node.dir/build.make pcl_extraction/CMakeFiles/calc_centroid_node.dir/src/calc_centroid_node.cpp.s
 .PHONY : src/calc_centroid_node.cpp.s
+
+src/calc_position.o: src/calc_position.cpp.o
+.PHONY : src/calc_position.o
+
+# target to build an object file
+src/calc_position.cpp.o:
+	cd /home/dguerra/aggregator/lidar/lidar_code/build && $(MAKE) -f pcl_extraction/CMakeFiles/calc_position_node.dir/build.make pcl_extraction/CMakeFiles/calc_position_node.dir/src/calc_position.cpp.o
+.PHONY : src/calc_position.cpp.o
+
+src/calc_position.i: src/calc_position.cpp.i
+.PHONY : src/calc_position.i
+
+# target to preprocess a source file
+src/calc_position.cpp.i:
+	cd /home/dguerra/aggregator/lidar/lidar_code/build && $(MAKE) -f pcl_extraction/CMakeFiles/calc_position_node.dir/build.make pcl_extraction/CMakeFiles/calc_position_node.dir/src/calc_position.cpp.i
+.PHONY : src/calc_position.cpp.i
+
+src/calc_position.s: src/calc_position.cpp.s
+.PHONY : src/calc_position.s
+
+# target to generate assembly for a file
+src/calc_position.cpp.s:
+	cd /home/dguerra/aggregator/lidar/lidar_code/build && $(MAKE) -f pcl_extraction/CMakeFiles/calc_position_node.dir/build.make pcl_extraction/CMakeFiles/calc_position_node.dir/src/calc_position.cpp.s
+.PHONY : src/calc_position.cpp.s
 
 src/extract_indices_node.o: src/extract_indices_node.cpp.o
 .PHONY : src/extract_indices_node.o
@@ -270,6 +308,7 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... calc_centroid_node"
+	@echo "... calc_position_node"
 	@echo "... edit_cache"
 	@echo "... extract_indices_node"
 	@echo "... install"
@@ -282,6 +321,9 @@ help:
 	@echo "... src/calc_centroid_node.o"
 	@echo "... src/calc_centroid_node.i"
 	@echo "... src/calc_centroid_node.s"
+	@echo "... src/calc_position.o"
+	@echo "... src/calc_position.i"
+	@echo "... src/calc_position.s"
 	@echo "... src/extract_indices_node.o"
 	@echo "... src/extract_indices_node.i"
 	@echo "... src/extract_indices_node.s"

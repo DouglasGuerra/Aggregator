@@ -4,9 +4,10 @@
 */
 
 #include <math.h>
-
+#include <iostream>
 //ROS includes
 #include <ros/ros.h>
+#include "ros/time.h"
 
 //PCL includes
 #include <sensor_msgs/PointCloud2.h>
@@ -17,6 +18,7 @@
 #include <pcl/sample_consensus/ransac.h>
 #include <pcl/point_types.h>
 #include <pcl/common/common.h>
+#include <pcl/common/centroid.h>
 #include <pcl/filters/extract_indices.h>
 
 //Subscriber and publisher for the pointcloud data
@@ -24,9 +26,19 @@ ros::Subscriber sub_input;
 ros::Publisher pub_output;
 
 //defining the length of our object in meters
-float object_length = 0.5334;
-float length_min = object_length - 0.05;	//setting a range of +/- 0.05 meters
-float length_max = object_length + 0.05;
+const float object_length = 0.5969;
+const float length_min = object_length - 0.15;	//setting a range of +/- 0.05 meters
+const float length_max = object_length + 0.15;
+
+//global variables
+const int max_angle_deviation = 10;		//the biggest angle deviation from being parallel to the dumping site
+const float max_center_deviation = 0.25;	//this is the range we give from the object being centered. Meaning our objects center can be +/- 0.15 from the position of lidar
+const int max_proximity = 0.25;			//the closest we can get to the dumping site during orientation
+
+//defining a constant for pi, which is going to be used to calculate the angle of 
+//orientation for object
+const double pi = 3.1415926;
+float angle = 0;
 
 /*
 * Function Name: pcl_cb
@@ -57,36 +69,39 @@ void pcl_cb(const sensor_msgs::PointCloud2ConstPtr& input){
 	//our object
 	pcl::ExtractIndices<pcl::PointXYZ> extract;
 
-	//creating a sensor msg to output our extracted object as a ros msg
+	//Function to calculate the centroid of the object
+	Eigen::Vector4f centroid;
+
+	//PointCloud variable that is needed to output as ROS Msg
 	sensor_msgs::PointCloud2 output;
 
 	//variables to calculate the length of the detected object
 	float dist_x = 0;
 	float dist_y = 0;
 	float dist_object = 0;
+
 	/*
 	A loop that continues until we find our desired object or there are no segments that
 	we can process
 	*/
 	bool found_object = false;
-	bool gotInliers = false;
-	while(!found_object || gotInliers){
+	bool gotInliers = true;
+	while(!found_object && gotInliers){
 		//setting the parameters of the segmentation object
 		seg.setModelType(pcl::SACMODEL_LINE);
 		seg.setMethodType(pcl::SAC_RANSAC);
-		seg.setDistanceThreshold(0.001);
+		seg.setDistanceThreshold(0.01);
 
 		//performing the segmentation
 		seg.setInputCloud(cloud);
 		seg.segment(*inliers, coefficients);
 
 		//No objects were find that fulfill our parameters so we break out of the loop
-		if(inliers->indices.size() == 0){
-			//std::cout << "No inliers" << std::endl;
+		if(inliers->indices.size() <= 20){
 			gotInliers = false;
 			break;
 		}
-		else{ //We have inliers so we can continue 
+		else{ //We have inliers so we can continue
 
 			//extracting the inliers from the original cloud
 			extract.setInputCloud(cloud);
@@ -106,18 +121,17 @@ void pcl_cb(const sensor_msgs::PointCloud2ConstPtr& input){
 			dist_object = pow(dist_x, 2) + pow(dist_y, 2);
 			dist_object = pow(dist_object, 0.5);
 
+			//publishing the object that has been extracted
+			pcl::toROSMsg(*cloud_inliers, output);
+			pub_output.publish(output);
+
 			//we have found our object
 			if(dist_object >= length_min && dist_object <= length_max){
 				//The distance of the object we found is within the desired range
 				found_object = true;
-				output_cloud = cloud_inliers;
-
-				//Outputting our ROS msg
-				pcl::toROSMsg(*output_cloud, output);
-				pub_output.publish(output);
+				break;
 			}
-
-			if(!found_object) {
+			else{
 				//Removing the extracted indices from the original cloud so we are left with a reduced cloud
 				extract.setInputCloud(cloud);
 				extract.setNegative(true);
@@ -126,21 +140,65 @@ void pcl_cb(const sensor_msgs::PointCloud2ConstPtr& input){
 			}
 		}
 	}
+
+	//We determine which message to send, we only want to send a message every 0.1 of a second
+	if(found_object){
+
+		/*
+		* computing the centroid of the object
+		* Centroid contains the distance of the centroid of the object to the lidar
+		* Centroid[1] refers to the distance to the left or right (y-axis)
+		* Centroid[0] refers to the distance from the front (x-axis)
+		*/
+		pcl::compute3DCentroid(*cloud_inliers, centroid);
+
+		//Inversing the y-axis, since the left is givn as positive and right as negative
+		centroid[1] = -1*centroid[1];
+
+		//ROS_INFO("X: %f, Y: %f, Z: %f", centroid[0], centroid[1], centroid[2]);
+		if(centroid[0] < max_proximity)
+			ROS_INFO("Stop: we are too close\n");
+		else if(centroid[1] < -max_center_deviation)
+			ROS_INFO("Go right: we are too far to the left\n");	//directions are from the perspective of the lidar
+		else if(centroid[1] > max_center_deviation)
+			ROS_INFO("Go left: we are too far to the right\n");	//directions are from the perspective of the lidar
+		else{
+			/*
+			* We are centered but we need to ensure that our robot is oriented to be parallel with the dumping area
+			* To do this we use the x-value, since it represents the distance to the front of the lidar.
+			* 	left_x represents the x-value of the leftmost point of the object, from perspective of the lidar
+			*	right_x represents the x_value of the rightmost posint of the object, from perspective of the lidar
+			*	angle represents our angle of deviation from the y-axis (axis representing the axis extending from the sides of the lidar)
+			*/
+			int right_x = cloud_inliers->points[0].x;
+			int left_x = cloud_inliers->points[cloud_inliers->points.size()-1].x;
+			angle = (180 / pi) * atan(dist_x / dist_y);
+
+			if (left_x < right_x && angle > max_angle_deviation)
+				ROS_INFO("We need to rotate clockwise by %f\n", angle);
+			else if(left_x > right_x && angle > max_angle_deviation)
+				ROS_INFO("We need to rotate counter-clockwise by %f\n", angle);
+			else
+				ROS_INFO("We are centered, and oriented!!!!!\n");
+		}
+	}
+	else{
+		ROS_INFO("Rotate: object not found\n");
+	}
 }
 
 int main(int argc, char** argv){
 
 	//initialize a node
-	ros::init(argc, argv, "ransac_node");
+	ros::init(argc, argv, "calc_position_node");
 	ros::NodeHandle nh;
 
 	//Create a ROS subscriber for the input data from the lidar
 	//Calls callback function pcl_cb
 	sub_input = nh.subscribe("/filter_output_pcl", 1000, pcl_cb);
 
-	//ROS publisher
-	// This is done for debugging to see it in rviz
-	pub_output = nh.advertise<sensor_msgs::PointCloud2>("pcl_line", 1);
+	//to publish object line, for debugging
+	pub_output = nh.advertise<sensor_msgs::PointCloud2>("output_line", 1);
 
 	//Main Loop
 	while(ros::ok()){

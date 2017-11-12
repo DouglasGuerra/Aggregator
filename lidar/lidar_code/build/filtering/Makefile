@@ -276,6 +276,20 @@ bond_generate_messages_py/fast:
 .PHONY : bond_generate_messages_py/fast
 
 # Convenience name for target.
+filtering/CMakeFiles/convert_cloud_node.dir/rule:
+	cd /home/dguerra/aggregator/lidar/lidar_code/build && $(MAKE) -f CMakeFiles/Makefile2 filtering/CMakeFiles/convert_cloud_node.dir/rule
+.PHONY : filtering/CMakeFiles/convert_cloud_node.dir/rule
+
+# Convenience name for target.
+convert_cloud_node: filtering/CMakeFiles/convert_cloud_node.dir/rule
+.PHONY : convert_cloud_node
+
+# fast build rule for target.
+convert_cloud_node/fast:
+	cd /home/dguerra/aggregator/lidar/lidar_code/build && $(MAKE) -f filtering/CMakeFiles/convert_cloud_node.dir/build.make filtering/CMakeFiles/convert_cloud_node.dir/build
+.PHONY : convert_cloud_node/fast
+
+# Convenience name for target.
 filtering/CMakeFiles/convert_input_cloud_node.dir/rule:
 	cd /home/dguerra/aggregator/lidar/lidar_code/build && $(MAKE) -f CMakeFiles/Makefile2 filtering/CMakeFiles/convert_input_cloud_node.dir/rule
 .PHONY : filtering/CMakeFiles/convert_input_cloud_node.dir/rule
@@ -807,6 +821,30 @@ topic_tools_generate_messages_py/fast:
 	cd /home/dguerra/aggregator/lidar/lidar_code/build && $(MAKE) -f filtering/CMakeFiles/topic_tools_generate_messages_py.dir/build.make filtering/CMakeFiles/topic_tools_generate_messages_py.dir/build
 .PHONY : topic_tools_generate_messages_py/fast
 
+src/convert_cloud.o: src/convert_cloud.cpp.o
+.PHONY : src/convert_cloud.o
+
+# target to build an object file
+src/convert_cloud.cpp.o:
+	cd /home/dguerra/aggregator/lidar/lidar_code/build && $(MAKE) -f filtering/CMakeFiles/convert_cloud_node.dir/build.make filtering/CMakeFiles/convert_cloud_node.dir/src/convert_cloud.cpp.o
+.PHONY : src/convert_cloud.cpp.o
+
+src/convert_cloud.i: src/convert_cloud.cpp.i
+.PHONY : src/convert_cloud.i
+
+# target to preprocess a source file
+src/convert_cloud.cpp.i:
+	cd /home/dguerra/aggregator/lidar/lidar_code/build && $(MAKE) -f filtering/CMakeFiles/convert_cloud_node.dir/build.make filtering/CMakeFiles/convert_cloud_node.dir/src/convert_cloud.cpp.i
+.PHONY : src/convert_cloud.cpp.i
+
+src/convert_cloud.s: src/convert_cloud.cpp.s
+.PHONY : src/convert_cloud.s
+
+# target to generate assembly for a file
+src/convert_cloud.cpp.s:
+	cd /home/dguerra/aggregator/lidar/lidar_code/build && $(MAKE) -f filtering/CMakeFiles/convert_cloud_node.dir/build.make filtering/CMakeFiles/convert_cloud_node.dir/src/convert_cloud.cpp.s
+.PHONY : src/convert_cloud.cpp.s
+
 src/convert_input_cloud.o: src/convert_input_cloud.cpp.o
 .PHONY : src/convert_input_cloud.o
 
@@ -894,6 +932,7 @@ help:
 	@echo "... bond_generate_messages_cpp"
 	@echo "... bond_generate_messages_lisp"
 	@echo "... bond_generate_messages_py"
+	@echo "... convert_cloud_node"
 	@echo "... convert_input_cloud_node"
 	@echo "... dynamic_reconfigure_gencfg"
 	@echo "... dynamic_reconfigure_generate_messages_cpp"
@@ -939,6 +978,9 @@ help:
 	@echo "... topic_tools_generate_messages_cpp"
 	@echo "... topic_tools_generate_messages_lisp"
 	@echo "... topic_tools_generate_messages_py"
+	@echo "... src/convert_cloud.o"
+	@echo "... src/convert_cloud.i"
+	@echo "... src/convert_cloud.s"
 	@echo "... src/convert_input_cloud.o"
 	@echo "... src/convert_input_cloud.i"
 	@echo "... src/convert_input_cloud.s"

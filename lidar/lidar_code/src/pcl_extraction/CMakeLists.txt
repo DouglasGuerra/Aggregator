@@ -51,3 +51,7 @@ target_link_libraries(extract_indices_node ${catkin_LIBRARIES})
 #executable for the centroid (calc_centroid_node.cpp)
 add_executable(calc_centroid_node src/calc_centroid_node.cpp)
 target_link_libraries(calc_centroid_node ${catkin_LIBRARIES})
+
+#executable for the calc_position_node
+add_executable(calc_position_node src/calc_position.cpp)
+target_link_libraries(calc_position_node ${catkin_LIBRARIES})

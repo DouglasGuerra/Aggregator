@@ -358,6 +358,19 @@ bond_generate_messages_py/fast:
 .PHONY : bond_generate_messages_py/fast
 
 #=============================================================================
+# Target rules for targets named convert_cloud_node
+
+# Build rule for target.
+convert_cloud_node: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 convert_cloud_node
+.PHONY : convert_cloud_node
+
+# fast build rule for target.
+convert_cloud_node/fast:
+	$(MAKE) -f filtering/CMakeFiles/convert_cloud_node.dir/build.make filtering/CMakeFiles/convert_cloud_node.dir/build
+.PHONY : convert_cloud_node/fast
+
+#=============================================================================
 # Target rules for targets named convert_input_cloud_node
 
 # Build rule for target.
@@ -865,6 +878,19 @@ calc_centroid_node/fast:
 .PHONY : calc_centroid_node/fast
 
 #=============================================================================
+# Target rules for targets named calc_position_node
+
+# Build rule for target.
+calc_position_node: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 calc_position_node
+.PHONY : calc_position_node
+
+# fast build rule for target.
+calc_position_node/fast:
+	$(MAKE) -f pcl_extraction/CMakeFiles/calc_position_node.dir/build.make pcl_extraction/CMakeFiles/calc_position_node.dir/build
+.PHONY : calc_position_node/fast
+
+#=============================================================================
 # Target rules for targets named extract_indices_node
 
 # Build rule for target.
@@ -919,6 +945,7 @@ help:
 	@echo "... bond_generate_messages_cpp"
 	@echo "... bond_generate_messages_lisp"
 	@echo "... bond_generate_messages_py"
+	@echo "... convert_cloud_node"
 	@echo "... convert_input_cloud_node"
 	@echo "... dynamic_reconfigure_gencfg"
 	@echo "... dynamic_reconfigure_generate_messages_cpp"
@@ -958,6 +985,7 @@ help:
 	@echo "... topic_tools_generate_messages_lisp"
 	@echo "... topic_tools_generate_messages_py"
 	@echo "... calc_centroid_node"
+	@echo "... calc_position_node"
 	@echo "... extract_indices_node"
 	@echo "... ransac_node"
 .PHONY : help

@@ -50,3 +50,7 @@ target_link_libraries(passthrough_filter_node ${catkin_LIBRARIES})
 #executable for statistical outlier filter node
 add_executable(statistical_outlier_filter_node src/statistical_outlier_filter.cpp)
 target_link_libraries(statistical_outlier_filter_node ${catkin_LIBRARIES})
+
+# executable for convert_input_cloud_node
+add_executable(convert_cloud_node src/convert_cloud.cpp)
+target_link_libraries(convert_cloud_node ${catkin_LIBRARIES})

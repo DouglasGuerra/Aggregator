@@ -1,0 +1,9 @@
+This folder contain code for the lidar.
+ 
+This code takes in the scan from the hokuyo lidar, filters it using the PassThrough and StatisticalOutlerRemoval filters.
+It then returns directions to center a specified object with respect to the position of the lidar.
+It also returns directions to orient a specified object with respect to the y-axis, which is defined by the axis that extends from the sides of the lidar.
+
+
+To run code, just run the following commands: 
+launch runLidar.launch

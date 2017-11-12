@@ -3,18 +3,9 @@
 	<!--hokuyo node -->
 	<node name="hokuyo_node" pkg="hokuyo_node" type="hokuyo_node" output="screen"/>
 
-	<!--convert_input_cloud_node-->
-	<node name="convert_input_cloud_node" pkg="filtering" type="convert_input_cloud_node" output="screen" />
+	<!--convert_cloud_node-->
+	<node name="convert_cloud_node" pkg="filtering" type="convert_cloud_node" output="screen" />
 
-	<!--passthrough_filter_node-->
-	<node name="passthrough_filter_node" pkg="filtering" type="passthrough_filter_node" output="screen" />
-
-	<!--statistical_outlier_node-->
-	<node name="statistical_outlier_filter_node" pkg="filtering" type="statistical_outlier_filter_node" output="screen" />
-
-	<!--ransac node-->
-	<node name="ransac_node" pkg="pcl_extraction" type="ransac_node" output="screen" />
-
-	<!--add for centroid-->
-
+	<!--calc_position_node-->
+	<node name="calc_position_node" pkg="pcl_extraction" type="calc_position_node" output="screen" />
 </launch>

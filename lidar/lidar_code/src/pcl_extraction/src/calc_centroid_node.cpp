@@ -18,7 +18,7 @@
 #include <pcl/common/common.h>
 #include <pcl/common/centroid.h>
 
-//Subsriber to obtain the extracted line
+//Subscriber to obtain the extracted line
 ros::Subscriber extracted_line;
 
 /*
