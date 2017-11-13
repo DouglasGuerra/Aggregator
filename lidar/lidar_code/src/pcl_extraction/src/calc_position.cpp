@@ -170,10 +170,11 @@ void pcl_cb(const sensor_msgs::PointCloud2ConstPtr& input){
 			*	right_x represents the x_value of the rightmost posint of the object, from perspective of the lidar
 			*	angle represents our angle of deviation from the y-axis (axis representing the axis extending from the sides of the lidar)
 			*/
-			int right_x = cloud_inliers->points[0].x;
-			int left_x = cloud_inliers->points[cloud_inliers->points.size()-1].x;
+			float right_x = cloud_inliers->points[0].x;
+			float left_x = cloud_inliers->points[cloud_inliers->points.size()-1].x;
 			angle = (180 / pi) * atan(dist_x / dist_y);
 
+			ROS_INFO("Angle: %f, Right_x: %f, Left_x: %f", angle, right_x, left_x);
 			if (left_x < right_x && angle > max_angle_deviation)
 				ROS_INFO("We need to rotate clockwise by %f\n", angle);
 			else if(left_x > right_x && angle > max_angle_deviation)
