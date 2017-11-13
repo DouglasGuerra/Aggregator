@@ -1,2 +1,2 @@
-filtering:pcl_extraction
+filtering:pcl_extraction:shared_files
 -DCATKIN_DEVEL_PREFIX=/home/dguerra/aggregator/lidar/lidar_code/devel -DCMAKE_INSTALL_PREFIX=/home/dguerra/aggregator/lidar/lidar_code/install -G Unix Makefiles

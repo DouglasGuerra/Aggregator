@@ -399,6 +399,15 @@ rostime_DIR:PATH=/opt/ros/indigo/share/rostime/cmake
 //The directory containing a CMake configuration file for sensor_msgs.
 sensor_msgs_DIR:PATH=/opt/ros/indigo/share/sensor_msgs/cmake
 
+//Value Computed by CMake
+shared_files_BINARY_DIR:STATIC=/home/dguerra/aggregator/lidar/lidar_code/build/shared_files
+
+//The directory containing a CMake configuration file for shared_files.
+shared_files_DIR:PATH=/home/dguerra/aggregator/lidar/lidar_code/devel/share/shared_files/cmake
+
+//Value Computed by CMake
+shared_files_SOURCE_DIR:STATIC=/home/dguerra/aggregator/lidar/lidar_code/src/shared_files
+
 //The directory containing a CMake configuration file for smclib.
 smclib_DIR:PATH=/opt/ros/indigo/share/smclib/cmake
 
@@ -528,7 +537,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_LOCAL_GENERATORS:INTERNAL=4
+CMAKE_NUMBER_OF_LOCAL_GENERATORS:INTERNAL=5
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

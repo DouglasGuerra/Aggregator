@@ -117,6 +117,7 @@ ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unsp
 IF(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   INCLUDE("/home/dguerra/aggregator/lidar/lidar_code/build/gtest/cmake_install.cmake")
+  INCLUDE("/home/dguerra/aggregator/lidar/lidar_code/build/shared_files/cmake_install.cmake")
   INCLUDE("/home/dguerra/aggregator/lidar/lidar_code/build/filtering/cmake_install.cmake")
   INCLUDE("/home/dguerra/aggregator/lidar/lidar_code/build/pcl_extraction/cmake_install.cmake")
 

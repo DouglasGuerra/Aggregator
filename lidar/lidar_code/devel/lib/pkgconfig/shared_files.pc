@@ -1,0 +1,8 @@
+prefix=/home/dguerra/aggregator/lidar/lidar_code/devel
+
+Name: shared_files
+Description: Description of shared_files
+Version: 0.0.0
+Cflags: -I/home/dguerra/aggregator/lidar/lidar_code/devel/include
+Libs: -L/home/dguerra/aggregator/lidar/lidar_code/devel/lib 
+Requires: message_generation message_runtime roscpp rospy std_msgs
