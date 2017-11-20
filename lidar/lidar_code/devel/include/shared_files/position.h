@@ -26,12 +26,18 @@ struct position_
   position_()
     : found(0)
     , position(0)
-    , direction(0)  {
+    , direction(0)
+    , rotation_enable(0)
+    , rotation_direction(0)
+    , angle(0.0)  {
     }
   position_(const ContainerAllocator& _alloc)
     : found(0)
     , position(0)
-    , direction(0)  {
+    , direction(0)
+    , rotation_enable(0)
+    , rotation_direction(0)
+    , angle(0.0)  {
   (void)_alloc;
     }
 
@@ -45,6 +51,15 @@ struct position_
 
    typedef int8_t _direction_type;
   _direction_type direction;
+
+   typedef int8_t _rotation_enable_type;
+  _rotation_enable_type rotation_enable;
+
+   typedef int8_t _rotation_direction_type;
+  _rotation_direction_type rotation_direction;
+
+   typedef float _angle_type;
+  _angle_type angle;
 
 
 
@@ -123,12 +138,12 @@ struct MD5Sum< ::shared_files::position_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "395927373cd00e1d292d7e52ce9a303e";
+    return "6f5868ec9e98907eb04314775bd5fcdc";
   }
 
   static const char* value(const ::shared_files::position_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x395927373cd00e1dULL;
-  static const uint64_t static_value2 = 0x292d7e52ce9a303eULL;
+  static const uint64_t static_value1 = 0x6f5868ec9e98907eULL;
+  static const uint64_t static_value2 = 0xb04314775bd5fcdcULL;
 };
 
 template<class ContainerAllocator>
@@ -162,10 +177,24 @@ struct Definition< ::shared_files::position_<ContainerAllocator> >
 #	-1 = left\n\
 #	0 = stop moving and go forward, we are too close to the dump_site and we don't want to hit\n\
 #	1 = right\n\
+#\n\
+# Rotation_enable tells us if we are centered and need to begin worrying about rotation\n\
+#	1 = centered, we need to orient ourselves\n\
+#	0 = not centered, don't worry about rotation\n\
+#\n\
+# Rotation_direction tells us the direction we need to rotate \n\
+#	-1 = counter-clockwise\n\
+#	0 = parallel to collecto bin, don't need to rotate anymore\n\
+#	1 = clockwise\n\
+#\n\
+# angle represents the angle deviation from being in parallel to the collector bin\n\
 \n\
 int8 found\n\
 int8 position\n\
 int8 direction\n\
+int8 rotation_enable\n\
+int8 rotation_direction\n\
+float32 angle\n\
 ";
   }
 
@@ -187,6 +216,9 @@ namespace serialization
       stream.next(m.found);
       stream.next(m.position);
       stream.next(m.direction);
+      stream.next(m.rotation_enable);
+      stream.next(m.rotation_direction);
+      stream.next(m.angle);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -211,6 +243,12 @@ struct Printer< ::shared_files::position_<ContainerAllocator> >
     Printer<int8_t>::stream(s, indent + "  ", v.position);
     s << indent << "direction: ";
     Printer<int8_t>::stream(s, indent + "  ", v.direction);
+    s << indent << "rotation_enable: ";
+    Printer<int8_t>::stream(s, indent + "  ", v.rotation_enable);
+    s << indent << "rotation_direction: ";
+    Printer<int8_t>::stream(s, indent + "  ", v.rotation_direction);
+    s << indent << "angle: ";
+    Printer<float>::stream(s, indent + "  ", v.angle);
   }
 };
 

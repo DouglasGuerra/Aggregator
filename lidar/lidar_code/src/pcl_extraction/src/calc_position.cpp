@@ -26,7 +26,6 @@
 //Subscriber and publisher for the pointcloud data
 ros::Subscriber sub_input;
 ros::Publisher pub_output;
-ros::Publisher rotation_pub;
 ros::Publisher pos_pub;
 
 //defining the length of our object in meters
@@ -168,25 +167,22 @@ void pcl_cb(const sensor_msgs::PointCloud2ConstPtr& input){
 		//ROS_INFO("X: %f, Y: %f, Z: %f", centroid[0], centroid[1], centroid[2]);
 		if(centroid[0] < max_proximity){
 			pos_msg.direction = 0;		//we want to stop moving
-			rotation_msg.enable = 0;	//we are not centered so we don't want to enable rotation
-			ROS_INFO("Stop: we are too close\n");
+			pos_msg.rotation_enable = 0;    //we are not centered so we don't want to enable rotation
 		}
 		else if(centroid[1] < -max_center_deviation){
-			pos_msg.direction = 1;	//we want to move right
-			pos_msg.position = -1; 	//we are on the left side of the arena
-			rotation_msg.enable = 0;	//we are not centered so we don't want to enable rotation
-			ROS_INFO("Go right: we are too far to the left\n");	//directions are from the perspective of the lidar
+			pos_msg.direction = 1;		//we want to move right
+			pos_msg.position = -1; 		//we are on the left side of the arena
+			pos_msg.rotation_enable = 0; 	//we are not centered so we don't want to enable rotation
 		}
 		else if(centroid[1] > max_center_deviation){
-			pos_msg.direction = -1;	//we want to move left
-			pos_msg.position = 1;	//we are on the right side of the arena
-			rotation_msg.enable = 0;	//we are not centered so we don't want to enable rotation
-			ROS_INFO("Go left: we are too far to the right\n");	//directions are from the perspective of the lidar
+			pos_msg.direction = -1;		//we want to move left
+			pos_msg.position = 1;		//we are on the right side of the arena
+			pos_msg.rotation_enable = 0; 	//we are not centered so we don't want to enable rotation
 		}
 		else{
 
 			pos_msg.position = 0;		//we are centered
-			rotation_msg.enable = 1;	//we are centered so we want to enable rotation
+			pos_msg.rotation_enable = 1;	//we are centered so we want to enable rotation
 
 			/*
 			* We are centered but we need to ensure that our robot is oriented to be parallel with the dumping area
@@ -199,32 +195,28 @@ void pcl_cb(const sensor_msgs::PointCloud2ConstPtr& input){
 			float left_x = cloud_inliers->points[cloud_inliers->points.size()-1].x;
 			angle = (180 / pi) * atan(dist_x / dist_y);
 
-			ROS_INFO("Angle: %f, Right_x: %f, Left_x: %f", angle, right_x, left_x);
+			//ROS_INFO("Angle: %f, Right_x: %f, Left_x: %f", angle, right_x, left_x);
 			if (left_x < right_x && angle > max_angle_deviation){
-				rotation_msg.direction = 1;	//rotate clockwise
-				rotation_msg.angle = angle;	//specifying the angle of rotation
-				ROS_INFO("We need to rotate clockwise by %f\n", angle);
+				pos_msg.rotation_direction = 1;		//rotate clockwise
+				pos_msg.angle = angle; 			//specifying the angle of rotation
 			}
 			else if(left_x > right_x && angle > max_angle_deviation){
-				rotation_msg.direction = -1;	//rotate counter-clockwise
-				rotation_msg.angle = angle;	//specifying the angle of rotation
-				ROS_INFO("We need to rotate counter-clockwise by %f\n", angle);
+				pos_msg.rotation_direction = -1;	//rotate counter-clockwise
+				pos_msg.angle = angle;			//specifying the angle of rotation
 			}
 			else{
-				rotation_msg.direction = 0;	//we are oriented
-				rotation_msg.angle = 0;
-				ROS_INFO("We are centered, and oriented!!!!!\n");
+				pos_msg.rotation_direction = 0;		//we are oriented
+				pos_msg.angle = 0;
 			}
 		}
 	}
 	else{
 		pos_msg.found = 0;		//object not found
-		rotation_msg.enable = 0;	//we are not centered so we don't want to enable rotation
-		ROS_INFO("Rotate: object not found\n");
+		pos_msg.rotation_enable = 0;
 	}
 
 	pos_pub.publish(pos_msg);
-	rotation_pub.publish(rotation_msg);
+	ROS_INFO("Sent information\n");
 }
 
 int main(int argc, char** argv){
@@ -242,7 +234,6 @@ int main(int argc, char** argv){
 
 	//publishing to msgs
 	pos_pub = nh.advertise<shared_files::position>("position_val", 10);
-	rotation_pub = nh.advertise<shared_files::angle_rotation>("rotation_val", 10);
 
 	//Main Loop
 	while(ros::ok()){

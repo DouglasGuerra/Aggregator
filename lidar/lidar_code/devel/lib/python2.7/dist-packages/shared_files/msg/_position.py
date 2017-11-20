@@ -7,7 +7,7 @@ import struct
 
 
 class position(genpy.Message):
-  _md5sum = "395927373cd00e1d292d7e52ce9a303e"
+  _md5sum = "6f5868ec9e98907eb04314775bd5fcdc"
   _type = "shared_files/position"
   _has_header = False #flag to mark the presence of a Header object
   _full_text = """# The values represent if we are to the left, right, or center in the arena
@@ -25,13 +25,27 @@ class position(genpy.Message):
 #	-1 = left
 #	0 = stop moving and go forward, we are too close to the dump_site and we don't want to hit
 #	1 = right
+#
+# Rotation_enable tells us if we are centered and need to begin worrying about rotation
+#	1 = centered, we need to orient ourselves
+#	0 = not centered, don't worry about rotation
+#
+# Rotation_direction tells us the direction we need to rotate 
+#	-1 = counter-clockwise
+#	0 = parallel to collecto bin, don't need to rotate anymore
+#	1 = clockwise
+#
+# angle represents the angle deviation from being in parallel to the collector bin
 
 int8 found
 int8 position
 int8 direction
+int8 rotation_enable
+int8 rotation_direction
+float32 angle
 """
-  __slots__ = ['found','position','direction']
-  _slot_types = ['int8','int8','int8']
+  __slots__ = ['found','position','direction','rotation_enable','rotation_direction','angle']
+  _slot_types = ['int8','int8','int8','int8','int8','float32']
 
   def __init__(self, *args, **kwds):
     """
@@ -41,7 +55,7 @@ int8 direction
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       found,position,direction
+       found,position,direction,rotation_enable,rotation_direction,angle
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -56,10 +70,19 @@ int8 direction
         self.position = 0
       if self.direction is None:
         self.direction = 0
+      if self.rotation_enable is None:
+        self.rotation_enable = 0
+      if self.rotation_direction is None:
+        self.rotation_direction = 0
+      if self.angle is None:
+        self.angle = 0.
     else:
       self.found = 0
       self.position = 0
       self.direction = 0
+      self.rotation_enable = 0
+      self.rotation_direction = 0
+      self.angle = 0.
 
   def _get_types(self):
     """
@@ -74,7 +97,7 @@ int8 direction
     """
     try:
       _x = self
-      buff.write(_struct_3b.pack(_x.found, _x.position, _x.direction))
+      buff.write(_struct_5bf.pack(_x.found, _x.position, _x.direction, _x.rotation_enable, _x.rotation_direction, _x.angle))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -87,8 +110,8 @@ int8 direction
       end = 0
       _x = self
       start = end
-      end += 3
-      (_x.found, _x.position, _x.direction,) = _struct_3b.unpack(str[start:end])
+      end += 9
+      (_x.found, _x.position, _x.direction, _x.rotation_enable, _x.rotation_direction, _x.angle,) = _struct_5bf.unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
@@ -102,7 +125,7 @@ int8 direction
     """
     try:
       _x = self
-      buff.write(_struct_3b.pack(_x.found, _x.position, _x.direction))
+      buff.write(_struct_5bf.pack(_x.found, _x.position, _x.direction, _x.rotation_enable, _x.rotation_direction, _x.angle))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -116,11 +139,11 @@ int8 direction
       end = 0
       _x = self
       start = end
-      end += 3
-      (_x.found, _x.position, _x.direction,) = _struct_3b.unpack(str[start:end])
+      end += 9
+      (_x.found, _x.position, _x.direction, _x.rotation_enable, _x.rotation_direction, _x.angle,) = _struct_5bf.unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
 
 _struct_I = genpy.struct_I
-_struct_3b = struct.Struct("<3b")
+_struct_5bf = struct.Struct("<5bf")
